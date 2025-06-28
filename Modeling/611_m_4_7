@@ -1,0 +1,17 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.06.11 14:44:25 =~=~=~=~=~=~=~=~=~=~=~=
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3818,len:0x508
+load:0x403c9700,len:0x4
+load:0x403c9704,len:0xad0
+load:0x403cc700,len:0x29e4
+entry 0x403c9880
+Spreading Factor: 7, Bandwidth: 0
+Packet: 1, RSSI: -88, SNR: 12
+Packet: 2, RSSI: -87, SNR: 12
+Packet: 3, RSSI: -89, SNR: 11
+Packet: 4, RSSI: -92, SNR: 12
+Packet: 5, RSSI: -83, SNR: 13
