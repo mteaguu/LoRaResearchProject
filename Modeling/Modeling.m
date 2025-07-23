@@ -8,12 +8,12 @@ clear all; close all;
 %
 
 % import putty log
-filename = "611_m_1_7";
+filename = "714_m_1_12";
 distance = 100; % distance between transmitter and receiver in meters
 puttylog = importdata(filename, ","); %file needs to be in same folder as code
 fprintf("Filename 1: %s\n", filename);
-filename = "611_m_2_7";
-distance2 = 200; % distance between transmitter and receiver in meters
+filename = "714_m_1_12";
+distance2 = 100; % distance between transmitter and receiver in meters
 puttylog2 = importdata(filename, ",");
 fprintf("Filename 2: %s\n", filename);
 
@@ -128,3 +128,42 @@ legend;
 % 100 m -> Path Loss = 94.92
 % 200 m -> Path Loss = 106.7
 % 300 m -> Path Loss = 121.85
+
+%%%%%%%% modeling %%%%%%%%%%%
+measurements = [PLlist1; PLlist2];
+distances = [distance*ones(size(PLlist1)); distance2*ones(size(PLlist2))];
+
+% Define logarithmic model: y = a * log(d) + b
+modelFun = @(b, d) b(1) * log(d) + b(2);  % b = [a, b]
+
+% Initial guess for parameters [a, b]
+b0 = [1, 1];
+
+% Fit model using nonlinear least squares
+opts = optimoptions('lsqcurvefit', 'Display', 'off');
+[b_est, resnorm] = lsqcurvefit(modelFun, b0, distances, measurements, [], [], opts);
+fittedparams = [b_est, resnorm];
+
+% Display estimated parameters
+%disp('Estimated Parameters [a, b] for log model:');
+%disp(b_est);
+
+% Predict measurements at new distances
+d_new = (50:10:700)';  % Example: predict from 50m to 300m
+y_pred = modelFun(b_est, d_new);
+
+PLavgs = [83.9, 92.09, 110.87, 121.68, 126.06, 122.47, 124,74];
+%PLdistances = (100:100:700);
+
+nrmse = goodnessOfFit(fittedparams, PLavgs, 'NRMSE');
+fprintf("Nomralized RMSE: %.2f\n", nrmse);
+
+% Plot original data and model prediction
+figure;
+scatter(distances, measurements, 'bo', 'filled'); hold on;
+plot(d_new, y_pred, 'r-', 'LineWidth', 2);
+xlabel('Distance (m)');
+ylabel('Measurement');
+legend('Measured Data', 'Log Model Prediction', 'Location', 'northeast');
+title('Logarithmic Least Squares Fit to Distance-Based Measurements');
+grid on;
