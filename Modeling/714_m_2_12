@@ -1,0 +1,118 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.07.14 14:49:17 =~=~=~=~=~=~=~=~=~=~=~=
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3818,len:0x508
+load:0x403c9700,len:0x4
+load:0x403c9704,len:0xad0
+load:0x403cc700,len:0x29e4
+entry 0x403c9880
+Spreading Factor: 12, Bandwidth: 0
+Packet: 1, RSSI: -63, SNR: 4
+Packet: 2, RSSI: -62, SNR: 4
+Packet: 3, RSSI: -62, SNR: 5
+Packet: 4, RSSI: -61, SNR: 4
+Packet: 5, RSSI: -61, SNR: 5
+Packet: 6, RSSI: -61, SNR: 4
+Packet: 7, RSSI: -61, SNR: 5
+Packet: 8, RSSI: -61, SNR: 5
+Packet: 9, RSSI: -62, SNR: 5
+Packet: 10, RSSI: -62, SNR: 5
+Packet: 11, RSSI: -61, SNR: 4
+Packet: 12, RSSI: -62, SNR: 4
+Packet: 13, RSSI: -62, SNR: 5
+Packet: 14, RSSI: -60, SNR: 5
+Packet: 15, RSSI: -62, SNR: 4
+Packet: 16, RSSI: -60, SNR: 4
+Packet: 17, RSSI: -62, SNR: 4
+Packet: 18, RSSI: -60, SNR: 4
+Packet: 19, RSSI: -63, SNR: 3
+Packet: 20, RSSI: -61, SNR: 4
+Packet: 21, RSSI: -61, SNR: 5
+Packet: 22, RSSI: -60, SNR: 4
+Packet: 23, RSSI: -62, SNR: 3
+Packet: 24, RSSI: -61, SNR: 5
+Packet: 25, RSSI: -61, SNR: 4
+Packet: 26, RSSI: -59, SNR: 3
+Packet: 27, RSSI: -59, SNR: 3
+Packet: 28, RSSI: -58, SNR: 3
+Packet: 29, RSSI: -60, SNR: 6
+Packet: 30, RSSI: -61, SNR: 3
+Packet: 31, RSSI: -62, SNR: 3
+Packet: 32, RSSI: -62, SNR: 4
+Packet: 33, RSSI: -63, SNR: 5
+Packet: 34, RSSI: -66, SNR: 6
+Packet: 35, RSSI: -65, SNR: 3
+Packet: 36, RSSI: -69, SNR: 4
+Packet: 37, RSSI: -65, SNR: 4
+Packet: 38, RSSI: -63, SNR: 3
+Packet: 39, RSSI: -65, SNR: 4
+Packet: 40, RSSI: -64, SNR: 4
+Packet: 41, RSSI: -61, SNR: 4
+Packet: 42, RSSI: -65, SNR: 5
+Packet: 43, RSSI: -63, SNR: 4
+Packet: 44, RSSI: -61, SNR: 4
+Packet: 45, RSSI: -63, SNR: 3
+Packet: 46, RSSI: -65, SNR: 5
+Packet: 47, RSSI: -64, SNR: 5
+Packet: 48, RSSI: -62, SNR: 5
+Packet: 49, RSSI: -61, SNR: 4
+Packet: 50, RSSI: -63, SNR: 4
+Packet: 51, RSSI: -63, SNR: 5
+Packet: 52, RSSI: -62, SNR: 4
+Packet: 53, RSSI: -64, SNR: 4
+Packet: 54, RSSI: -62, SNR: 3
+Packet: 55, RSSI: -63, SNR: 5
+Packet: 56, RSSI: -61, SNR: 5
+Packet: 57, RSSI: -65, SNR: 4
+Packet: 58, RSSI: -64, SNR: 4
+Packet: 59, RSSI: -63, SNR: 3
+Packet: 60, RSSI: -64, SNR: 4
+Packet: 61, RSSI: -66, SNR: 5
+Packet: 62, RSSI: -65, SNR: 4
+Packet: 63, RSSI: -64, SNR: 4
+Packet: 64, RSSI: -65, SNR: 4
+Packet: 65, RSSI: -64, SNR: 4
+Packet: 66, RSSI: -64, SNR: 3
+Packet: 67, RSSI: -64, SNR: 3
+Packet: 68, RSSI: -62, SNR: 6
+Packet: 69, RSSI: -62, SNR: 4
+Packet: 70, RSSI: -61, SNR: 5
+Packet: 71, RSSI: -61, SNR: 4
+Packet: 72, RSSI: -63, SNR: 3
+Packet: 73, RSSI: -62, SNR: 5
+Packet: 74, RSSI: -63, SNR: 5
+Packet: 75, RSSI: -63, SNR: 5
+Packet: 76, RSSI: -64, SNR: 6
+Packet: 77, RSSI: -65, SNR: 3
+Packet: 78, RSSI: -65, SNR: 4
+Packet: 79, RSSI: -64, SNR: 3
+Packet: 80, RSSI: -59, SNR: 4
+Packet: 81, RSSI: -63, SNR: 4
+Packet: 82, RSSI: -65, SNR: 5
+Packet: 83, RSSI: -62, SNR: 7
+Packet: 84, RSSI: -63, SNR: 4
+Packet: 85, RSSI: -63, SNR: 4
+Packet: 86, RSSI: -64, SNR: 4
+Packet: 87, RSSI: -60, SNR: 4
+Packet: 88, RSSI: -61, SNR: 5
+Packet: 89, RSSI: -62, SNR: 4
+Packet: 90, RSSI: -63, SNR: 4
+Packet: 91, RSSI: -59, SNR: 4
+Packet: 92, RSSI: -61, SNR: 3
+Packet: 93, RSSI: -62, SNR: 3
+Packet: 94, RSSI: -62, SNR: 3
+Packet: 95, RSSI: -62, SNR: 6
+Packet: 96, RSSI: -63, SNR: 3
+Packet: 97, RSSI: -60, SNR: 5
+Packet: 98, RSSI: -60, SNR: 5
+Packet: 99, RSSI: -61, SNR: 4
+Packet: 100, RSSI: -60, SNR: 5
+Packet: 101, RSSI: -66, SNR: 4
+Packet: 102, RSSI: -62, SNR: 4
+Packet: 103, RSSI: -63, SNR: 4
+Packet: 104, RSSI: -65, SNR: 5
+Packet: 105, RSSI: -61, SNR: 5
+Packet: 106, RSSI: -61, SNR: 3
