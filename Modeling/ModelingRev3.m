@@ -97,6 +97,49 @@ FinalF6Matrix = extractFileMatrix(F6Matrix);
 FinalF7Matrix = extractFileMatrix(F7Matrix);
 
 
+
+%%%% Generate Function %%%%
+measurements = [abs(FinalF1Matrix{7}); abs(FinalF2Matrix{7}); abs(FinalF3Matrix{7});
+                abs(FinalF4Matrix{7}); abs(FinalF5Matrix{7}); abs(FinalF6Matrix{7}); 
+                abs(FinalF7Matrix{7})]; %%% Matrix Containing Each Average
+distances = [f1d; f2d; f3d; f4d; f5d; f6d; f7d]; %%% Matrix Containing Each Distance
+
+% Define logarithmic model: y = a * log(d) + b
+modelFun = @(b, d) b(1) * log(d) + b(2);  % b = [a, b] %%% Creates Model We will Fit To
+
+% Initial guess for parameters [a, b]
+b0 = [1, 1];
+
+% Fit model using nonlinear least squares
+opts = optimoptions('lsqcurvefit', 'Display', 'off');
+[b_est, resnorm] = lsqcurvefit(modelFun, b0, distances, measurements, [], [], opts);
+
+% Display estimated parameters
+disp('Estimated Parameters [a, b] for log model:');
+disp(b_est);
+
+% Predict measurements at new distances
+d_new = (50:10:700)';  % Example: predict from 50m to 700m
+y_pred = modelFun(b_est, d_new); %% Our Predicted "Y" Value Data
+d_new_short = (100:100:700)';  % Example: prediction to align with data
+y_pred_short = modelFun(b_est, d_new_short); %% Our Predicted "Y" Value Data
+
+
+fit = goodnessOfFit(y_pred_short,measurements,'NRMSE');
+fprintf("Fit found by NRMSE: %.2f\n", fit);
+
+
+
+
+
+
+
+
+
+
+
+
+
 %%%% Creating Plots %%%%
 %% RAW RSSI PLOT vs Distance
 figure(1)
@@ -151,7 +194,7 @@ scatter(FinalF1Matrix{6}, FinalF1Matrix{4});
 hold on
 xlabel("Distance (m)");
 ylabel("dBm"); %%% Check later if true
-title("Raw Effective Signal Power Data vs Distance");
+title("Effective Signal Power vs Distance");
 scatter(FinalF2Matrix{6}, FinalF2Matrix{4});
 scatter(FinalF3Matrix{6}, FinalF3Matrix{4});
 scatter(FinalF4Matrix{6}, FinalF4Matrix{4});
@@ -164,6 +207,9 @@ hold off
 figure(4)
 boxplot(FinalF1Matrix{2},'Positions',1);
 hold on
+xlabel("Distance (m)");
+ylabel("RSSI (dB)");
+title("RSSI vs Distance (Boxplot)");
 boxplot(FinalF2Matrix{2},'Positions',2);
 boxplot(FinalF3Matrix{2},'Positions',3);
 boxplot(FinalF4Matrix{2},'Positions',4);
@@ -176,38 +222,51 @@ set(gca(),'XTick',[1 2, 3, 4, 5, 6, 7], 'XTickLabel',{FinalF1Matrix{6}, ...
     FinalF6Matrix{6}, FinalF7Matrix{6},})
 hold off
 
+%% Create Boxplot of SNR
+figure(5)
+boxplot(FinalF1Matrix{3},'Positions',1);
+hold on
+xlabel("Distance (m)");
+ylabel("SNR"); %% SNR
+title("SNR Data vs Distance (Boxplot)");
+boxplot(FinalF2Matrix{3},'Positions',2);
+boxplot(FinalF3Matrix{3},'Positions',3);
+boxplot(FinalF4Matrix{3},'Positions',4);
+boxplot(FinalF5Matrix{3},'Positions',5);
+boxplot(FinalF6Matrix{3},'Positions',6);
+boxplot(FinalF7Matrix{3},'Positions',7);
+axis tight;
+set(gca(),'XTick',[1 2, 3, 4, 5, 6, 7], 'XTickLabel',{FinalF1Matrix{6}, ...
+    FinalF2Matrix{6}, FinalF3Matrix{6}, FinalF4Matrix{6}, FinalF5Matrix{6}, ...
+    FinalF6Matrix{6}, FinalF7Matrix{6},})
+hold off
 
-%%%%%%%%%%%%%%%%%%%% Testing
+%% Create Boxplot of ESP
+figure(6)
+boxplot(FinalF1Matrix{4},'Positions',1);
+hold on
+xlabel("Distance (m)");
+ylabel("dBm"); %% SNR
+title("ESP Data vs Distance (Boxplot)");
+boxplot(FinalF2Matrix{4},'Positions',2);
+boxplot(FinalF3Matrix{4},'Positions',3);
+boxplot(FinalF4Matrix{4},'Positions',4);
+boxplot(FinalF5Matrix{4},'Positions',5);
+boxplot(FinalF6Matrix{4},'Positions',6);
+boxplot(FinalF7Matrix{4},'Positions',7);
+axis tight;
+set(gca(),'XTick',[1 2, 3, 4, 5, 6, 7], 'XTickLabel',{FinalF1Matrix{6}, ...
+    FinalF2Matrix{6}, FinalF3Matrix{6}, FinalF4Matrix{6}, FinalF5Matrix{6}, ...
+    FinalF6Matrix{6}, FinalF7Matrix{6},})
+hold off
+
 %%%%%%%% ChatGPT modeling %%%%%%%%%%%
-measurements = [abs(FinalF1Matrix{7}); abs(FinalF2Matrix{7}); abs(FinalF3Matrix{7});
-                abs(FinalF4Matrix{7}); abs(FinalF5Matrix{7}); abs(FinalF6Matrix{7}); 
-                abs(FinalF7Matrix{7})];
-distances = [f1d; f2d; f3d; f4d; f5d; f6d; f7d];
-
-% Define logarithmic model: y = a * log(d) + b
-modelFun = @(b, d) b(1) * log(d) + b(2);  % b = [a, b]
-
-% Initial guess for parameters [a, b]
-b0 = [1, 1];
-
-% Fit model using nonlinear least squares
-opts = optimoptions('lsqcurvefit', 'Display', 'off');
-[b_est, resnorm] = lsqcurvefit(modelFun, b0, distances, measurements, [], [], opts);
-
-% Display estimated parameters
-disp('Estimated Parameters [a, b] for log model:');
-disp(b_est);
-
-% Predict measurements at new distances
-d_new = (50:10:700)';  % Example: predict from 50m to 700m
-y_pred = modelFun(b_est, d_new);
-
 % Plot original data and model prediction
-figure(5);
+figure(7);
 scatter(distances, measurements, 'bo', 'filled'); hold on;
 plot(d_new, y_pred, 'r-', 'LineWidth', 2);
 xlabel('Distance (m)');
-ylabel('Measurement');
+ylabel('RSSI (dB)');
 legend('Measured Data', 'Log Model Prediction', 'Location', 'northeast');
-title('Logarithmic Least Squares Fit to Distance-Based Measurements');
+title('Predicted Model Based on RSSI Data');
 grid on;
